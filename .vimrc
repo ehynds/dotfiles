@@ -45,7 +45,6 @@ set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
-set splitright " open split vertial windows to the right of the current window
 set number
 set guifont=Consolas
 set linespace=3
@@ -82,8 +81,12 @@ let NERDTreeShowBookmarks=1 " always show bookmarks on open
 let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
 
-" ,w to open a new vertical split window, and switch to it immediately
-nnoremap <leader>w <C-w>v<C-w>l
+" work with windows a bit easier
+nnoremap <leader>ws <C-w>v<C-w>l " new vertical
+nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
+nnoremap <leader>wq <C-w>q<C-w>l " quit window 
+nnoremap <leader>ww <C-w>w<C-w>l " switch between windows
+set splitright " open split vertial windows to the right of the current window
 
 " JSON
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
@@ -122,5 +125,5 @@ vmap <silent> <leader>d "_d
 " Restore cursor position upon reopening files
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" misc remappings
+" ,bc to close the current buffer, but keep the window open
 nmap <Leader>bc :Bclose<CR>
