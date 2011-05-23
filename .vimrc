@@ -55,8 +55,11 @@ set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
 " white space options
 set list
 set listchars=tab:>-,trail:.
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set expandtab " expand tab to spaces
+set softtabstop=2
+set smarttab
 
 " set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
