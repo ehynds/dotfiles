@@ -84,6 +84,9 @@ let NERDTreeShowBookmarks=1 " always show bookmarks on open
 let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
 
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
+
 " work with windows a bit easier
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
