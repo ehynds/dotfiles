@@ -33,8 +33,6 @@ set modelines=0
 set nowrap " Do not wrap lines.
 set title " Show the filename in the window titlebar.
 set scrolloff=3
-set autoindent
-set copyindent
 set showmode
 set showcmd
 set hidden
@@ -52,14 +50,21 @@ set linespace=3
 " status line
 set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
 
-" white space options
+" white space / tab options
 set list
 set listchars=tab:>-,trail:.
-set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set expandtab " expand tab to spaces
-set softtabstop=2
 set smarttab
+set autoindent
+set copyindent
+
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 3
+nmap <Leader>ie :IndentGuidesEnable<CR>
+nmap <Leader>id :IndentGuidesDisable<CR>
 
 " set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
