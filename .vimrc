@@ -52,7 +52,7 @@ set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
 
 " white space / tab options
 set list
-set listchars=tab:>-,trail:.
+set listchars=tab:▸\ ,trail:.
 set softtabstop=2
 set shiftwidth=2
 set expandtab " expand tab to spaces
