@@ -66,6 +66,11 @@ let g:indent_guides_color_change_percent = 3
 nmap <Leader>ie :IndentGuidesEnable<CR>
 nmap <Leader>id :IndentGuidesDisable<CR>
 
+" code folding
+set foldmethod=indent   " fold based on indent
+set foldnestmax=10      " deepest fold is 10 levels
+set nofoldenable        " don't fold by default
+
 " set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
 au BufReadPost * set relativenumber
