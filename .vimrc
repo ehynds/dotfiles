@@ -95,7 +95,7 @@ let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
 
 " Gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F7> :GundoToggle<CR>
 
 " work with windows a bit easier
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
@@ -122,13 +122,15 @@ source $VIMRUNTIME/mswin.vim
 behave mswin
 
 " show marks / mark wok plugins
+let g:showmarks_marks = "abcdefghijklmnopqrstuvwxyz"
+let g:wokmarks_do_maps=0
 nmap <Leader>ms :DoShowMarks<CR>
 nmap <Leader>mh :NoShowMarks<CR>
-nmap <Leader>mm <Plug>ToggleMarkWok :DoShowMarks<CR>
-nmap <Leader>md <Plug>KillMarksWok :DoShowMarks<CR>
+nmap <Leader>mm <Plug>ToggleMarkWok :DoShowMarks<CR> " set a mark and refresh (or show) the marks bar 
+nmap <Leader>md <Plug>KillMarksWok :DoShowMarks<CR> " remove all marks, toggle marks bar
+nmap <F5> <Plug>PrevMarkWok
+nmap <F6> <Plug>NextMarkWok
 nnoremap <silent> <Leader>ml :marks abcdefghijklmnopqrstuvwxyz<CR>
-let g:showmarks_marks = "abcdefghijklmnopqrstuvqxyz"
-let g:wokmarks_do_maps=0
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
