@@ -53,9 +53,9 @@ set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
 " white space / tab options
 set list
 set listchars=tab:▸\ ,trail:.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab " expand tab to spaces
 set smarttab
 set autoindent
