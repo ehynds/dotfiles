@@ -1,20 +1,22 @@
 # Prototype
 snippet proto
 	${1:class_name}.prototype.${2:method_name} =
-	function(${3:first_argument}) {
+	function( ${3:first_argument} ) {
 		${4:// body...}
 	};
 # Function
 snippet fun
-	function ${1:function_name}(${2:argument}) {
+	function ${1:function_name}( ${2:argument} ) {
 		${3:// body...}
 	}
 # Anonymous Function
 snippet f
-	function(${1}) {${2}};
+	function( ${1} ) {${2}};
 # if
 snippet if
-	if(${1:true}) {${2}}
+	if( ${1:true} ) {
+		${2}
+	}
 # if ... else
 snippet ife
 	if(${1:true}) {
@@ -27,7 +29,7 @@ snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
 # switch
 snippet switch
-	switch(${1:expression}) {
+	switch( ${1:expression} ) {
 		case '${3:case}':
 			${4:// code}
 			break;
@@ -53,7 +55,7 @@ snippet forr
 	};
 # while (...) {...}
 snippet wh
-	while (${1:/* condition */}) {
+	while ( ${1:/* condition */} ) {
 		${2:/* code */}
 	}
 # do...while
