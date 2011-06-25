@@ -3,6 +3,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd ~'
 alias ll='tree --dirsfirst -ChFupDaLg 1'
+alias ls='ls -a'
 
 # weinre
 alias weinre='java -jar ~/weinre.jar --boundHost=-all-'
