@@ -7,8 +7,9 @@ call pathogen#helptags()
 filetype plugin indent on
 
 " set syntax highlighting options
+set background=dark
 set t_Co=256
-set background=light
+let g:solarized_termcolors=256 " for terminal vim
 let g:solarized_visibility="low"
 syntax on
 colorscheme solarized
@@ -44,8 +45,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set number
-set guifont=Consolas
-set linespace=3
+set linespace=1
 
 " status line
 set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
@@ -102,21 +102,25 @@ nnoremap <F7> :GundoToggle<CR>
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window 
-nnoremap <leader>ww <C-w>w<C-w>l " switch between windows
+nnoremap <leader>ww <C-w>w<CR> " switch between windows
 set splitright " open split vertial windows to the right of the current window
 
 " JSON
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
 
 " buffers - explore/next/previous: Alt-F12, F12, Shift-F12.
-nnoremap <silent> <F10> :BufExplorer<CR>
-nnoremap <silent> <F11> :bp<CR>
-nnoremap <silent> <F12> :bn<CR>
+" in vim for win/linux, use function keys to move buffers.
+" I'll use the command+arrow keys in macvim
+if !has("mac")
+  nnoremap <F10> :BufExplorer<CR>
+  nnoremap <F11> :bp<CR>
+  nnoremap <F12> :bn<CR>
+endif
 
-" local dirs
-set backupdir=~/.vim/tmp
-set directory=~/.vim/tmp
-set undodir=~/.vim/tmp
+" Local dirs
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set undodir=~/.vim/undo
 
 " yeah yeah...
 source $VIMRUNTIME/mswin.vim
@@ -146,3 +150,23 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " ,bc to close the current buffer, but keep the window open
 nmap <Leader>bc :Bclose<CR>
+nmap <Leader>bc! :Bclose!<CR>
+
+" Faster split resizing (+,-)
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
+
+" Remap :W to :w
+map W w
+
+" Clear last search (,cs)
+map <silent> <leader>cs <Esc>:noh<CR>
+
+" Fix page up and down
+map <PageUp> <C-U>
+map <PageDown> <C-D>
+imap <PageUp> <C-O><C-U>
+imap <PageDown> <C-O><C-D>
+

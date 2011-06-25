@@ -1,0 +1,31 @@
+# Dir navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ~='cd ~'
+alias ll='tree --dirsfirst -ChFupDaLg 1'
+
+# weinre
+alias weinre='java -jar ~/weinre.jar --boundHost=-all-'
+
+# apache
+alias a2stop="sudo apachectl stop"
+alias a2start="sudo apachectl start"
+alias a2restart="sudo apachectl graceful"
+
+# vim
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias gvim="mvim"
+alias vimdiff="vim -d"
+
+# Utilities
+alias a="ack -ia"
+alias d="du -h -d=1"
+alias df="df -h"
+alias h="history"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ipconfig getifaddr en1"
+alias flush="dscacheutil -flushcache"
+
+# git
+alias gd="git difftool"

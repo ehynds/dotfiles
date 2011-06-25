@@ -1,0 +1,15 @@
+# Load things
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
+fi
+
+if [ -f ~/.functions ]; then
+  source ~/.functions
+fi
+export EDITOR=vim
+
+# add custom .scripts to $PATH
+if [ -d ~/.scripts ] ; then
+  export PATH=$HOME/.scripts:$PATH
+fi
+
