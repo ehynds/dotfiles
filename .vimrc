@@ -7,7 +7,7 @@ call pathogen#helptags()
 filetype plugin indent on
 
 " set syntax highlighting options
-set background=dark
+set background=light
 set t_Co=256
 let g:solarized_termcolors=256 " for terminal vim
 let g:solarized_visibility="low"
@@ -40,7 +40,7 @@ set laststatus=2 " Always show status line
 set modelines=0
 set nowrap " Do not wrap lines.
 set title " Show the filename in the window titlebar.
-set scrolloff=3
+set scrolloff=3 " start scrolling when within 3 lines near the top/bottom
 set showmode
 set showcmd
 set hidden
@@ -57,7 +57,6 @@ set linespace=1
 " status line
 set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " white space / tab options
@@ -76,15 +75,16 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
-" yeah yeah...
-source $VIMRUNTIME/mswin.vim
-behave mswin
-
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 2
 nmap <Leader>ie :IndentGuidesEnable<CR>
 nmap <Leader>id :IndentGuidesDisable<CR>
+
+" Fix indent guides when used in the terminal.
+" https://github.com/nathanaelkane/vim-indent-guides/issues/24
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " code folding
 set foldmethod=indent " fold based on indent
@@ -114,9 +114,8 @@ let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
 " Gundo
 nnoremap <F7> :GundoToggle<CR>
 
-" syntastic
-let g:syntastic_stl_format = ' [%E{Err: %e, line %fe}%B{, }%W{Warn: %w, line #%fw}]'
-map <Leader>e :Errors<CR>
+" Ack
+map <leader>a :Ack! 
 
 " work with windows a bit easier
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
@@ -124,6 +123,11 @@ nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window 
 nnoremap <leader>ww <C-w>w<CR> " switch between windows
 set splitright " open split vertial windows to the right of the current window
+set splitbelow " ditto for horizontals
+noremap <C-h> <C-w>h " jump around splits with ctrl+hjkl
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " JSON
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
@@ -161,6 +165,10 @@ map! <F1> <Esc>
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
 
+" better movement
+noremap j gj
+noremap k gk
+
 " Restore cursor position upon reopening files
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -180,8 +188,8 @@ noremap <leader>W :w !sudo tee %<CR>
 " Remap :W to :w
 command W w
 
-" Clear last search (,cs)
-map <silent> <leader>cs <Esc>:noh<CR>
+" double tap esc to clear last search
+nnoremap <silent> <Esc> :noh<CR><Esc>
 
 " Fix page up and down
 map <PageUp> <C-U>
@@ -189,4 +197,19 @@ map <PageDown> <C-D>
 imap <PageUp> <C-O><C-U>
 imap <PageDown> <C-O><C-D>
 
+" move a line of text using ALT+[jk], indent with ALT+[hl]
+nnoremap <A-j> :m+<CR>
+nnoremap <A-k> :m-2<CR>
+nnoremap <A-h> <<
+nnoremap <A-l> >>
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+inoremap <A-h> <Esc><<`]a
+inoremap <A-l> <Esc>>>`]a
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+vnoremap <A-h> <gv
+vnoremap <A-l> >gv
 
+" auto reload vimrc when editing
+autocmd! BufWritePost .vimrc source %

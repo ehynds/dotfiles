@@ -6,15 +6,15 @@ snippet proto
 	};
 # Function
 snippet fun
-	function ${1:function_name}( ${2:argument} ) {
+	function ${1:function_name}(${2:argument}) {
 		${3:// body...}
 	}
 # Anonymous Function
 snippet f
-	function( ${1} ) {${2}};
+	function(${1}) {${2}};
 # if
 snippet if
-	if( ${1:true} ) {
+	if(${1:true}) {
 		${2}
 	}
 # if ... else
@@ -29,7 +29,7 @@ snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
 # switch
 snippet switch
-	switch( ${1:expression} ) {
+	switch(${1:expression}) {
 		case '${3:case}':
 			${4:// code}
 			break;
@@ -45,17 +45,12 @@ snippet case
 	${3}
 # for (...) {...}
 snippet for
-	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
+	for (var ${2:i} = 0, len = ${1:Things}.length; $2 < len; $2${3:++}) {
 		${4:$1[$2]}
-	};
-# for (...) {...} (Improved Native For-Loop)
-snippet forr
-	for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2${3:--}) {
-		${4:$1[$2]}
-	};
+	}
 # while (...) {...}
 snippet wh
-	while ( ${1:/* condition */} ) {
+	while (${1:/* condition */}) {
 		${2:/* code */}
 	}
 # do...while
@@ -69,20 +64,24 @@ snippet :f
 		${4}
 	}${3:,}
 # setTimeout function
-snippet setTimeout
+snippet timeout
 	setTimeout(function(){
 		${3}
 	}${2}, ${1:10});
+snippet interval
+	setInterval(function(){
+		${3}
+	}${2}, ${1:10});
 # Get Elements
-snippet get
-	getElementsBy${1:TagName}('${2}')${3}
+snippet gets
+	document.getElementsBy${1:TagName}('${2}')${3}
 # Get Element
-snippet gett
-	getElementBy${1:Id}('${2}')${3}
+snippet get
+	document.getElementBy${1:Id}('${2}')${3}
 snippet $
 	$('${1}')
 snippet cl
-	console.log( '${1}', ${2} );
+	console.log('${1}', ${2});
 snippet cw
 	console.warn( ${1} );
 snippet cd
