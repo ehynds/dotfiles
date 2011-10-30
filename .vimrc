@@ -61,7 +61,7 @@ set statusline+=%*
 
 " white space / tab options
 set list
-set listchars=tab:▸\ ,trail:.
+set listchars=tab:▸\ ,trail:·
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -213,3 +213,6 @@ vnoremap <A-l> >gv
 
 " auto reload vimrc when editing
 autocmd! BufWritePost .vimrc source %
+
+" use 4-space soft tabs for sass files, so I can actually read them.
+autocmd BufRead,BufNewFile *.sass setlocal shiftwidth=4 tabstop=4 softtabstop=4
