@@ -1,9 +1,9 @@
 set go-=T " Hide toolbar on launch
 set background=light
-set guifont=Monaco:h12
 
 " macvim only
 if has("gui_macvim")
+  set guifont=Monaco:h12
 
   " command-t
   macmenu &File.New\ Tab key=<nop>
@@ -23,4 +23,11 @@ if has("gui_macvim")
   " NERD tree. Command-n to open
   macmenu &File.New\ Window key=<nop>
   nmap <D-n> :NERDTreeToggle<CR>
+endif
+
+" on linux
+if has("unix")
+  set guifont="consolas 11"
+  set clipboard=unnamed " allow copy/paste from system clipboard
+  set lsp=3 " needs moar line spacing
 endif
