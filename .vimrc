@@ -7,7 +7,7 @@ call pathogen#helptags()
 filetype plugin indent on
 
 " set syntax highlighting options
-set background=light
+set background=dark
 set t_Co=256
 let g:solarized_termcolors=256 " for terminal vim
 let g:solarized_visibility="low"
@@ -55,9 +55,14 @@ set number
 set linespace=1
 
 " status line
-set statusline=%<%f\ %h%w%m%r%y%=L:%l/%L\ (%p%%)\ C:%c%V\ B:%o
-set statusline+=%#warningmsg#
-set statusline+=%*
+set statusline=%<%f\ %y" file name and type
+set statusline+=%h%w%m%r " flags
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " encoding
+set statusline+=%=L:%l/%L " right align; current line/total lines
+set statusline+=\ (%p%%) " percent complete
+set statusline+=\ C:%c%V " character
+set statusline+=\ %{fugitive#statusline()}
+set statusline+=%* " switch to normal status line
 
 " white space / tab options
 set list
@@ -117,17 +122,23 @@ nnoremap <F7> :GundoToggle<CR>
 " Ack
 map <leader>a :Ack! 
 
-" work with windows a bit easier
+" work with splits a bit easier
+set splitright " open split vertial windows to the right of the current window
+set splitbelow " ditto for horizontals
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window 
 nnoremap <leader>ww <C-w>w<CR> " switch between windows
-set splitright " open split vertial windows to the right of the current window
-set splitbelow " ditto for horizontals
 noremap <C-h> <C-w>h " jump around splits with ctrl+hjkl
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" Jump around splits with the arrow keys
+nnoremap <silent> <Right> <c-w>l
+nnoremap <silent> <Left> <c-w>h
+nnoremap <silent> <Up> <c-w>k
+nnoremap <silent> <Down> <c-w>j
 
 " JSON
 au BufRead,BufNewFile *.json set ft=json syntax=javascript
@@ -145,11 +156,6 @@ endif
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
 nmap <Leader>mc :ShowMarksClearAll<CR>
 nmap <Leader>md :ShowMarksClearMark<CR>
-" let g:wokmarks_do_maps=0
-" nmap <Leader>mm <Plug>ToggleMarkWok :DoShowMarks<CR> " set a mark and refresh (or show) the marks bar 
-" nmap <Leader>md <Plug>KillMarksWok :DoShowMarks<CR> " remove all marks, toggle marks bar
-" nmap <F5> <Plug>PrevMarkWok
-" nmap <F6> <Plug>NextMarkWok
 
 " tag list
 map <F8> :TlistToggle<CR>
@@ -169,6 +175,9 @@ vmap <silent> <leader>d "_d
 noremap j gj
 noremap k gk
 
+" Yank from cursor to end of line
+nnoremap Y y$
+
 " Restore cursor position upon reopening files
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -185,17 +194,18 @@ endif
 " Sudo write (,W)
 noremap <leader>W :w !sudo tee %<CR>
 
-" Remap :W to :w
-command W w
+" command abbreviations
+ca W w
+ca Q q
 
 " double tap esc to clear last search
 nnoremap <silent> <Esc> :noh<CR><Esc>
 
 " Fix page up and down
-map <PageUp> <C-U>
-map <PageDown> <C-D>
-imap <PageUp> <C-O><C-U>
-imap <PageDown> <C-O><C-D>
+" map <PageUp> <C-U>
+" map <PageDown> <C-D>
+" imap <PageUp> <C-O><C-U>
+" imap <PageDown> <C-O><C-D>
 
 " move a line of text using ALT+[jk], indent with ALT+[hl]
 nnoremap <A-j> :m+<CR>
@@ -214,5 +224,8 @@ vnoremap <A-l> >gv
 " auto reload vimrc when editing
 autocmd! BufWritePost .vimrc source %
 
-" use 4-space soft tabs for sass files, so I can actually read them.
+" use 4-space soft tabs for sass files so I can actually read them.
 autocmd BufRead,BufNewFile *.sass setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+" git bindings
+nnoremap <leader>gs :Gstatus<CR>
