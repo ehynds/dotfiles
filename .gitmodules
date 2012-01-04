@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/vim-css-color"]
 	path = .vim/bundle/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
+[submodule ".vim/bundle/vim-showmarks"]
+	path = .vim/bundle/vim-showmarks
+	url = https://github.com/garbas/vim-showmarks.git
