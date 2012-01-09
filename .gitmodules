@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/vim-showmarks"]
 	path = .vim/bundle/vim-showmarks
 	url = https://github.com/garbas/vim-showmarks.git
+[submodule ".vim/bundle/vim-pasta"]
+	path = .vim/bundle/vim-pasta
+	url = https://github.com/sickill/vim-pasta
