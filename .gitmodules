@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/vim-bufonly"]
 	path = .vim/bundle/vim-bufonly
 	url = https://github.com/duff/vim-bufonly.git
+[submodule "bundle/jshint"]
+	path = bundle/jshint
+	url = https://github.com/walm/jshint.vim
