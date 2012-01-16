@@ -1,5 +1,6 @@
 set nocompatible
 
+
 " pathogen
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -92,9 +93,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " code folding
-set foldmethod=indent " fold based on indent
-set foldnestmax=10 " deepest fold is 10 levels
-set nofoldenable " don't fold by default
+set foldmethod=indent
+set foldnestmax=2
+nnoremap <space> za
+vnoremap <space> zf
+set nofoldenable       " disable folding on file open
 
 " set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
@@ -122,6 +125,9 @@ nnoremap <F7> :GundoToggle<CR>
 " Ack
 map <leader>a :Ack! 
 
+" powerline
+let g:Powerline_symbols = 'fancy'
+
 " work with splits a bit easier
 set splitright " open split vertial windows to the right of the current window
 set splitbelow " ditto for horizontals
@@ -140,8 +146,9 @@ nnoremap <silent> <Left> <c-w>h
 nnoremap <silent> <Up> <c-w>k
 nnoremap <silent> <Down> <c-w>j
 
-" JSON
-au BufRead,BufNewFile *.json set ft=json syntax=javascript
+" set file types
+au BufRead,BufNewFile *.json set ft=javascript
+au BufRead,BufNewFile *.cfm set ft=html
 
 " buffers - explore/next/previous: Alt-F12, F12, Shift-F12.
 " in vim for win/linux, use function keys to move buffers.
@@ -182,8 +189,10 @@ nnoremap Y y$
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " ,bc to close the current buffer, but keep the window open
-nmap <Leader>bc :Bclose<CR>
-nmap <Leader>bc! :Bclose!<CR>
+" nmap <Leader>bc :Bclose<CR>
+" nmap <Leader>bc! :Bclose!<CR>
+nmap <leader>bc :bprevious<CR>:bdelete #<CR>
+nmap <leader>bo :BufOnly<CR> " close all other buffers but this one
 
 " Faster split resizing (+,-)
 if bufwinnr(1)
