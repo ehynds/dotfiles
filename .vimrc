@@ -1,6 +1,5 @@
 set nocompatible
 
-
 " pathogen
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -75,6 +74,7 @@ set expandtab " expand tab to spaces
 set smarttab
 set autoindent
 set copyindent
+set smartindent
 
 " Local dirs
 set backupdir=~/.vim/backups
@@ -130,15 +130,9 @@ let g:Powerline_symbols = 'fancy'
 
 " work with splits a bit easier
 set splitright " open split vertial windows to the right of the current window
-set splitbelow " ditto for horizontals
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window 
-nnoremap <leader>ww <C-w>w<CR> " switch between windows
-noremap <C-h> <C-w>h " jump around splits with ctrl+hjkl
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 
 " Jump around splits with the arrow keys
 nnoremap <silent> <Right> <c-w>l
