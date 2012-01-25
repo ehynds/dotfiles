@@ -6,8 +6,13 @@ snippet proto
 	};
 # Function
 snippet fun
-	function ${1:function_name}(${2:argument}) {
-		${3:// body...}
+	function${1:function_name}(${2:argument}) {
+		${3}
+	}
+# method
+snippet m
+	${1:method_name}: function(${2:argument}) {
+		${3}
 	}
 # Anonymous Function
 snippet f
@@ -92,3 +97,5 @@ snippet ce
 	console.error( ${1} );
 snippet ct
 	console.table( ${1} );
+snippet a
+	alert(${1})
