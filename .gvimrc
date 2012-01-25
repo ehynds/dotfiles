@@ -1,7 +1,7 @@
 set go-=T " Hide toolbar on launch
 set background=light
 
-" macvim only
+" macvim options
 if has("gui_macvim")
   set guifont=Monaco:h12
 
@@ -34,12 +34,9 @@ if has("gui_macvim")
   " omnicomplete
   inoremap <D-c> <c-x><c-o>
 
-endif
-
-" on linux
-if has("unix")
+" linux options
+elseif has("unix")
   set guifont="consolas 11"
   set clipboard=unnamed " allow copy/paste from system clipboard
   set lsp=3 " needs moar line spacing
 endif
-
