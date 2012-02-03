@@ -21,6 +21,11 @@ let mapleader = ","
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+" Keep search matches in the middle of the window and pulse the line
+" when moving to them.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " ignore case in searches
 set ignorecase
 set smartcase
@@ -46,6 +51,7 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
+set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git
 set visualbell
 set cursorline
 set ttyfast
@@ -74,7 +80,6 @@ set expandtab " expand tab to spaces
 set smarttab
 set autoindent
 set copyindent
-set smartindent
 
 " Local dirs
 set backupdir=~/.vim/backups
@@ -128,8 +133,12 @@ map <leader>a :Ack!
 " powerline
 let g:Powerline_symbols = 'fancy'
 
+" Toggle spell check
+nnoremap <silent> <leader>s :set spell!<CR>
+
 " work with splits a bit easier
-set splitright " open split vertial windows to the right of the current window
+set splitright " open split vertical windows to the right of the current window
+set splitbelow
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window 
@@ -183,16 +192,8 @@ nnoremap Y y$
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " ,bc to close the current buffer, but keep the window open
-" nmap <Leader>bc :Bclose<CR>
-" nmap <Leader>bc! :Bclose!<CR>
 nmap <leader>bc :bprevious<CR>:bdelete #<CR>
 nmap <leader>bo :BufOnly<CR> " close all other buffers but this one
-
-" Faster split resizing (+,-)
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
-endif
 
 " Sudo write (,W)
 noremap <leader>W :w !sudo tee %<CR>
@@ -203,12 +204,6 @@ ca Q q
 
 " double tap esc to clear last search
 nnoremap <silent> <Esc> :noh<CR><Esc>
-
-" Fix page up and down
-" map <PageUp> <C-U>
-" map <PageDown> <C-D>
-" imap <PageUp> <C-O><C-U>
-" imap <PageDown> <C-O><C-D>
 
 " move a line of text using ALT+[jk], indent with ALT+[hl]
 nnoremap <A-j> :m+<CR>
