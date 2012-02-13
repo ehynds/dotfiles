@@ -7,12 +7,12 @@ call pathogen#helptags()
 filetype plugin indent on
 
 " set syntax highlighting options
+syntax on
 set background=dark
 set t_Co=256
 let g:solarized_termcolors=256 " for terminal vim
 let g:solarized_visibility="low"
-syntax on
-colorscheme solarized
+colorscheme railscasts
 
 " remap leader
 let mapleader = ","
@@ -102,7 +102,7 @@ set foldmethod=indent
 set foldnestmax=2
 nnoremap <space> za
 vnoremap <space> zf
-set nofoldenable       " disable folding on file open
+set nofoldenable " disable folding on file open
 
 " set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
@@ -113,7 +113,7 @@ au BufReadPost * set relativenumber
 nnoremap <CR> o<Esc>
 nnoremap <BS> x
 
-" NERD Commenter
+" NERDCommenter
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 
@@ -130,11 +130,17 @@ nnoremap <F7> :GundoToggle<CR>
 " Ack
 map <leader>a :Ack! 
 
-" powerline
+" Powerline
 let g:Powerline_symbols = 'fancy'
 
 " Toggle spell check
 nnoremap <silent> <leader>s :set spell!<CR>
+
+" F1 key to display the full pathname of the
+" current buffer in all modes
+nnoremap <silent> <F1> :echo expand("%:p")<CR>
+inoremap <silent> <F1> :echo expand("%:p")<CR>
+vnoremap <silent> <F1> :echo expand("%:p")<CR>
 
 " work with splits a bit easier
 set splitright " open split vertical windows to the right of the current window
@@ -167,21 +173,12 @@ let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
 nmap <Leader>mc :ShowMarksClearAll<CR>
 nmap <Leader>md :ShowMarksClearMark<CR>
 
-" tag list
-map <F8> :TlistToggle<CR>
-let Tlist_Use_Right_Window=1 
-let Tlist_GainFocus_On_ToggleOpen=1
-let list_Show_One_File = 1
-
-" Avoid accidental hits of <F1> while aiming for <Esc>
-map! <F1> <Esc>
-
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
 
-" better movement
+" better key movement
 noremap j gj
 noremap k gk
 
@@ -201,6 +198,7 @@ noremap <leader>W :w !sudo tee %<CR>
 " command abbreviations
 ca W w
 ca Q q
+ca Wq wq
 
 " double tap esc to clear last search
 nnoremap <silent> <Esc> :noh<CR><Esc>
