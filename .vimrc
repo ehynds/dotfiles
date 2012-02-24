@@ -173,6 +173,10 @@ let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
 nmap <Leader>mc :ShowMarksClearAll<CR>
 nmap <Leader>md :ShowMarksClearMark<CR>
 
+let g:buffergator_suppress_keymaps=1
+let g:buffergator_viewport_split_policy="R"
+let g:buffergator_sort_regime="mru"
+
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
 nmap <silent> <leader>d "_d

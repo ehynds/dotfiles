@@ -26,7 +26,7 @@ if has("gui_macvim")
   " Command-down to open bufexplorer
   nnoremap <D-right> :tabnext<CR>
   nnoremap <D-left> :tabprevious<CR>
-  nnoremap <D-down> :BufExplorer<CR>
+  nnoremap <D-down> :BuffergatorToggle<CR><CR>
 
   " NERD tree. Command-n to open
   macmenu &File.New\ Window key=<nop>
