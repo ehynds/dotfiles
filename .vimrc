@@ -132,10 +132,10 @@ map <leader>a :Ack!
 if has("unix")
   " assume I'm not using a patched font on linux
   let g:Powerline_symbols = 'unicode'
-else
+endif
+if has("mac")
   let g:Powerline_symbols = 'fancy'
 endif
-
 
 " show marks
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."

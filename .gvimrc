@@ -4,7 +4,7 @@ set background=light
 colorscheme solarized
 
 " macvim options
-if has("gui_macvim")
+if has("mac")
   set guifont=Monaco:h12
 
   " make the alt key behave as a meta key.
@@ -32,9 +32,6 @@ if has("gui_macvim")
   " NERD tree. Command-n to open
   macmenu &File.New\ Window key=<nop>
   nmap <D-n> :NERDTreeToggle<CR>
-
-  " omnicomplete
-  inoremap <D-c> <c-x><c-o>
 
 " linux options
 elseif has("unix")
