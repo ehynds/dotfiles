@@ -1,10 +1,11 @@
 set go-=T " Hide toolbar on launch
 
+set background=light
+colorscheme solarized
+
 " macvim options
 if has("gui_macvim")
   set guifont=Monaco:h12
-  set background=light
-  colorscheme solarized
 
   " make the alt key behave as a meta key.
   " this enables you to remap the alt key

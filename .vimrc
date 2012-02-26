@@ -12,7 +12,7 @@ set background=dark
 set t_Co=256
 let g:solarized_termcolors=256 " for terminal vim
 let g:solarized_visibility="low"
-colorscheme railscasts
+colorscheme solarized
 
 " remap leader
 let mapleader = ","
@@ -59,6 +59,7 @@ set ruler
 set backspace=indent,eol,start
 set number
 set linespace=1
+set shortmess=a
 
 " status line
 set statusline=%<%f\ %y" file name and type
@@ -87,15 +88,12 @@ set directory=~/.vim/swaps
 set undodir=~/.vim/undo
 
 " indent guides
-let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 2
 nmap <Leader>ie :IndentGuidesEnable<CR>
 nmap <Leader>id :IndentGuidesDisable<CR>
-
-" Fix indent guides when used in the terminal.
-" https://github.com/nathanaelkane/vim-indent-guides/issues/24
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+if has("gui_running")
+  let g:indent_guides_enable_on_vim_startup = 1
+endif
 
 " code folding
 set foldmethod=indent
@@ -131,7 +129,32 @@ nnoremap <F7> :GundoToggle<CR>
 map <leader>a :Ack! 
 
 " Powerline
-let g:Powerline_symbols = 'fancy'
+if has("unix")
+  " assume I'm not using a patched font on linux
+  let g:Powerline_symbols = 'unicode'
+else
+  let g:Powerline_symbols = 'fancy'
+endif
+
+
+" show marks
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
+nmap <Leader>mc :ShowMarksClearAll<CR>
+nmap <Leader>md :ShowMarksClearMark<CR>
+
+" buffergator
+let g:buffergator_suppress_keymaps=1
+let g:buffergator_sort_regime="mru"
+if has("unix")
+  nnoremap <c-down> :BuffergatorToggle<CR>
+endif
+
+" tabs in linux
+if has("unix")
+  nnoremap <c-right> :tabnext<CR>
+  nnoremap <c-left> :tabprev<CR>
+  nnoremap <c-t> :tabnew<CR>
+endif
 
 " Toggle spell check
 nnoremap <silent> <leader>s :set spell!<CR>
@@ -157,25 +180,7 @@ nnoremap <silent> <Down> <c-w>j
 
 " set file types
 au BufRead,BufNewFile *.json set ft=javascript
-au BufRead,BufNewFile *.cfm set ft=html
-
-" buffers - explore/next/previous: Alt-F12, F12, Shift-F12.
-" in vim for win/linux, use function keys to move buffers.
-" I'll use the command+arrow keys in macvim
-if !has("mac")
-  nnoremap <F10> :BufExplorer<CR>
-  nnoremap <F11> :bp<CR>
-  nnoremap <F12> :bn<CR>
-endif
-
-" show marks
-let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
-nmap <Leader>mc :ShowMarksClearAll<CR>
-nmap <Leader>md :ShowMarksClearMark<CR>
-
-let g:buffergator_suppress_keymaps=1
-let g:buffergator_viewport_split_policy="R"
-let g:buffergator_sort_regime="mru"
+au BufRead,BufNewFile *.cfm,*.cfc set ft=html sw=4 ts=4 noexpandtab
 
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
@@ -226,6 +231,3 @@ autocmd! BufWritePost .vimrc source %
 
 " use 4-space soft tabs for sass files so I can actually read them.
 autocmd BufRead,BufNewFile *.sass setlocal shiftwidth=4 tabstop=4 softtabstop=4
-
-" git bindings
-nnoremap <leader>gs :Gstatus<CR>
