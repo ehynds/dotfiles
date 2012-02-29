@@ -8,11 +8,10 @@ filetype plugin indent on
 
 " set syntax highlighting options
 syntax on
-set background=dark
 set t_Co=256
-let g:solarized_termcolors=256 " for terminal vim
+let g:solarized_termcolors=256
 let g:solarized_visibility="low"
-colorscheme solarized
+colorscheme jellybeans
 
 " remap leader
 let mapleader = ","
@@ -141,6 +140,9 @@ endif
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
 nmap <Leader>mc :ShowMarksClearAll<CR>
 nmap <Leader>md :ShowMarksClearMark<CR>
+
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_working_path_mode = 0
 
 " buffergator
 let g:buffergator_suppress_keymaps=1

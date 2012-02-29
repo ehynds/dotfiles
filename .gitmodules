@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/vim-colors-jellybeans"]
+	path = .vim/bundle/vim-colors-jellybeans
+	url = https://github.com/nanotech/jellybeans.vim.git
