@@ -88,6 +88,7 @@ set undodir=~/.vim/undo
 
 " indent guides
 let g:indent_guides_color_change_percent = 2
+let g:indent_guides_auto_colors = 1
 nmap <Leader>ie :IndentGuidesEnable<CR>
 nmap <Leader>id :IndentGuidesDisable<CR>
 if has("gui_running")
@@ -188,6 +189,9 @@ au BufRead,BufNewFile *.cfm,*.cfc set ft=html sw=4 ts=4 noexpandtab
 " yanked stack (also, in visual mode)
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
+
+" // to search for highlighted text in visual mode
+vmap // y/<C-R>"<CR>
 
 " better key movement
 noremap j gj
