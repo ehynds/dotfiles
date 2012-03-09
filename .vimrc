@@ -116,11 +116,16 @@ let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 
 " NERDTree
-nmap <silent> <c-n> :NERDTreeToggle<CR> " map open to ctrl+n
 nmap <Leader>nf :NERDTreeFind<CR> " open a tree with the current file as context
-let NERDTreeShowBookmarks=1 " always show bookmarks on open
+
 let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
+if has("unix")
+  nmap <silent> <c-n> :NERDTreeToggle<CR>
+endif
+
+" Sparkup
+let g:sparkupNextMapping = '<leader>nt'
 
 " Gundo
 nnoremap <F7> :GundoToggle<CR>

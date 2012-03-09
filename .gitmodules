@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/vim-colors-jellybeans"]
 	path = .vim/bundle/vim-colors-jellybeans
 	url = https://github.com/nanotech/jellybeans.vim.git
+[submodule ".vim/bundle/vim-sparkup"]
+	path = .vim/bundle/vim-sparkup
+	url = https://github.com/sjl/vim-sparkup.git

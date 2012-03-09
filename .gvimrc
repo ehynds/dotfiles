@@ -17,6 +17,9 @@ if has("mac")
   " Command-t to open a new tab
   map <D-t> :tabnew<CR>
 
+  " Command-e to expand html (Sparkup)
+  let g:sparkupExecuteMapping = '<D-e>'
+
  " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
  
