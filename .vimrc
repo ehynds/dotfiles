@@ -149,6 +149,7 @@ nmap <Leader>md :ShowMarksClearMark<CR>
 
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_jump_to_buffer = 0
 
 " buffergator
 let g:buffergator_suppress_keymaps=1
