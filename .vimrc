@@ -60,7 +60,7 @@ set number
 set linespace=1
 set shortmess=a
 
-" status line
+" status line (if powerline is not available)
 set statusline=%<%f\ %y" file name and type
 set statusline+=%h%w%m%r " flags
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " encoding
@@ -117,7 +117,6 @@ let NERDCompactSexyComs=1
 
 " NERDTree
 nmap <Leader>nf :NERDTreeFind<CR> " open a tree with the current file as context
-
 let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
 if has("unix")
@@ -147,6 +146,7 @@ let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
 nmap <Leader>mc :ShowMarksClearAll<CR>
 nmap <Leader>md :ShowMarksClearMark<CR>
 
+" Ctrl+p
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_jump_to_buffer = 0
@@ -220,23 +220,10 @@ noremap <leader>W :w !sudo tee %<CR>
 ca W w
 ca Q q
 ca Wq wq
+ca Qq qa
 
 " double tap esc to clear last search
 nnoremap <silent> <Esc> :noh<CR><Esc>
-
-" move a line of text using ALT+[jk], indent with ALT+[hl]
-nnoremap <A-j> :m+<CR>
-nnoremap <A-k> :m-2<CR>
-nnoremap <A-h> <<
-nnoremap <A-l> >>
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-inoremap <A-h> <Esc><<`]a
-inoremap <A-l> <Esc>>>`]a
-vnoremap <A-j> :m'>+<CR>gv=gv
-vnoremap <A-k> :m-2<CR>gv=gv
-vnoremap <A-h> <gv
-vnoremap <A-l> >gv
 
 " auto reload vimrc when editing
 autocmd! BufWritePost .vimrc source %
