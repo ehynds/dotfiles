@@ -31,9 +31,6 @@
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
-[submodule ".vim/bundle/autoclose"]
-	path = .vim/bundle/autoclose
-	url = https://github.com/Townk/vim-autoclose.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -85,3 +82,6 @@
 [submodule ".vim/bundle/golden-ratio"]
 	path = .vim/bundle/golden-ratio
 	url = https://github.com/roman/golden-ratio
+[submodule ".vim/bundle/vim-smartinput"]
+	path = .vim/bundle/vim-smartinput
+	url = https://github.com/kana/vim-smartinput.git
