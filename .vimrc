@@ -19,6 +19,7 @@ let mapleader = ","
 " slam the j and k keys in any order to GTFO
 inoremap jk <Esc>
 inoremap kj <Esc>
+inoremap jj <Esc>
 
 " Keep search matches in the middle of the window and pulse the line
 " when moving to them.
@@ -217,10 +218,10 @@ nmap <leader>bo :BufOnly<CR> " close all other buffers but this one
 noremap <leader>W :w !sudo tee %<CR>
 
 " command abbreviations
-ca W w
-ca Q q
-ca Wq wq
-ca Qq qa
+command W w
+command Q q
+command Wq wq
+command Qq qa
 
 " double tap esc to clear last search
 nnoremap <silent> <Esc> :noh<CR><Esc>
