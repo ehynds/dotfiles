@@ -17,7 +17,7 @@ colorscheme jellybeans
 let mapleader = ","
 
 " history / backup
-set history=1000 " Increase history from 20 
+set history=1000 " Increase history from 20
 set undofile
 set undolevels=250
 
@@ -72,11 +72,18 @@ set noswapfile
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap jj <Esc>
+inoremap kk <Esc>
 
-" Keep search matches in the middle of the window and pulse the line
-" when moving to them.
+" Don't move on *
+nnoremap * *<c-o>
+
+" Keep search matches in the middle of the window 
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" Same when jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
 
 " status line (if powerline is not available)
 set statusline=%<%f\ %y" file name and type
@@ -139,7 +146,7 @@ let g:sparkupNextMapping = '<leader>nt'
 nnoremap <F7> :GundoToggle<CR>
 
 " Ack
-map <leader>a :Ack! 
+map <leader>a :Ack!
 
 " Powerline
 if has("unix")
@@ -239,15 +246,10 @@ command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
 " double tap esc to clear last search
-nnoremap <silent> <Esc> :noh<CR><Esc>
-
-" Open a Quickfix window for the last search.
-nnoremap <silent> <leader>? :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+nnoremap <silent> <leader>c :noh<CR>
 
 " auto reload vimrc when editing
 autocmd! BufWritePost .vimrc source %
 
 " use 4-space soft tabs for sass files so I can actually read them.
 autocmd BufRead,BufNewFile *.sass setlocal shiftwidth=4 tabstop=4 softtabstop=4
-
-
