@@ -77,7 +77,7 @@ inoremap kk <Esc>
 " Don't move on *
 nnoremap * *<c-o>
 
-" Keep search matches in the middle of the window 
+" Keep search matches in the middle of the window
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -141,6 +141,15 @@ endif
 
 " Sparkup
 let g:sparkupNextMapping = '<leader>nt'
+
+" UltiSnips
+let g:UltiSnipsSnippetsDir="~/.vim/snippets"
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=["snippets"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 
 " Gundo
 nnoremap <F7> :GundoToggle<CR>
