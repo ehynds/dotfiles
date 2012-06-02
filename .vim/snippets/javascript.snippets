@@ -1,89 +1,77 @@
-# console
-
+# debugging
 snippet cl
-console.log('${1}', ${2});
-endsnippet
-
+	console.log('${1}', ${2});
 snippet cw
-console.warn('${1}');
-endsnippet
-
+	console.warn('${1}');
 snippet ce
-console.error('${1}');
-endsnippet
-
-
+	console.error('${1}');
+snippet ct
+	console.trace();
+snippet a
+	alert('${1}');
+#
+#
 # expressions
-
-
+#
+#
 snippet if
-if(${1:expression}) {
-  ${2}
-}
-endsnippet
-
+	if(${1:expression}) {
+		${2}
+	}
 snippet ife
-if(${1:true}) {
-  ${2}
-} else {
-  ${3}
-}
-endsnippet
-
-
+	if(${1:true}) {
+		${2}
+	} else {
+		${3}
+	}
+#
+#
 # functions
-
-
+#
+#
 snippet fun
-function${1:function_name}(${2:argument}) {
-  ${3}
-}
-endsnippet
-
+	function${1:function_name}(${2:argument}) {
+		${3}
+	}
 snippet m
-${1:method_name}: function(${2:argument}) {
-  ${3}
-}
-endsnippet
-
-
+	${1:method_name}: function(${2:argument}) {
+		${3}
+	}
+#
+#
 # timeouts
-
-
-snippet timeout
-setTimeout(function(){
-  ${2}
-}, ${1:10});
-endsnippet
-
-snippet interval
-setInterval(function(){
-  ${2}
-}, ${1:10});
-endsnippet
-
-
+#
+#
+snippet st
+	setTimeout(function() {
+		${2}
+	}, ${1:10});
+snippet si
+	setInterval(function() {
+		${2}
+	}, ${1:10});
+#
+#
 # DOM
-
+#
+#
 snippet gets
-document.getElementsBy${1:TagName}('${2}');${3}
-endsnippet
-
+	document.getElementsBy${1:TagName}('${2}');${3}
 snippet get
-document.getElementById('${1}');${2}
-endsnippet
-
-
-
+	document.getElementById('${1}');${2}
+snippet qsa
+	document.querySelectorAll('${1}');${2}
+#
+#
+# Other stuff
+#
+#
 snippet switch
-switch(${1:expression}) {
-  case '${2:case}':
-    ${3:// code}
-    break;
-  ${4}
-  default:
-    ${5:// code}
-}
-endsnippet
-
-
+	switch(${1:expression}) {
+		case '${2:case}':
+			${3:// code}
+			break;
+		${4}
+		default:
+			${5:// code}
+	}

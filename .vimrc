@@ -85,6 +85,9 @@ nnoremap N Nzzzv
 nnoremap g; g;zz
 nnoremap g, g,zz
 
+" Scroll to the middle with something i can remember
+nnoremap zm zz
+
 " status line (if powerline is not available)
 set statusline=%<%f\ %y" file name and type
 set statusline+=%h%w%m%r " flags
@@ -141,15 +144,6 @@ endif
 
 " Sparkup
 let g:sparkupNextMapping = '<leader>nt'
-
-" UltiSnips
-let g:UltiSnipsSnippetsDir="~/.vim/snippets"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=["snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 
 " Gundo
 nnoremap <F7> :GundoToggle<CR>
