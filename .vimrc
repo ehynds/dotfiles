@@ -40,7 +40,7 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git
+set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*
 set visualbell
 set cursorline
 set ttyfast
