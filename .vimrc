@@ -151,6 +151,11 @@ nnoremap <F7> :GundoToggle<CR>
 " Ack
 map <leader>a :Ack!
 
+" vim-javascript
+let g:html_indent_inctags = "body,head,tbody,embed"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
 " Powerline
 if has("unix")
   " assume I'm not using a patched font on linux
