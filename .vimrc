@@ -112,9 +112,10 @@ set nofoldenable " disable folding on file open
 au FileType javascript setlocal foldmethod=marker
 au FileType javascript setlocal foldmarker={,}
 
-" set relative line numbers
-set relativenumber " Use relative line numbers. Current line is still in status bar.
-au BufReadPost * set relativenumber
+" set relative line numbers, except when in insert mode
+set relativenumber " Use relative line numbers
+au InsertEnter * :set nu
+au InsertLeave * :set rnu
 
 " insert a new line and return to normal mode on enter
 " backspace deletes current char in normal mode
