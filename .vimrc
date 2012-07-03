@@ -40,7 +40,7 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*
+set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*,*node_modules/*
 set visualbell
 set cursorline
 set ttyfast
@@ -114,8 +114,7 @@ au FileType javascript setlocal foldmarker={,}
 
 " set relative line numbers, except when in insert mode
 set relativenumber " Use relative line numbers
-au InsertEnter * :set nu
-au InsertLeave * :set rnu
+au BufReadPost * set relativenumber
 
 " insert a new line and return to normal mode on enter
 " backspace deletes current char in normal mode
@@ -165,11 +164,6 @@ endif
 if has("mac")
   let g:Powerline_symbols = 'fancy'
 endif
-
-" show marks
-let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ."
-nnoremap <Leader>mc :ShowMarksClearAll<CR>
-nnoremap <Leader>md :ShowMarksClearMark<CR>
 
 " Ctrl+p
 let g:ctrlp_map = '<leader>t'
