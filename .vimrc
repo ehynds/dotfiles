@@ -112,14 +112,12 @@ set nofoldenable " disable folding on file open
 au FileType javascript setlocal foldmethod=marker
 au FileType javascript setlocal foldmarker={,}
 
-" set relative line numbers, except when in insert mode
-set relativenumber " Use relative line numbers
+" relative line number
+set relativenumber
 au BufReadPost * set relativenumber
 
 " insert a new line and return to normal mode on enter
-" backspace deletes current char in normal mode
 nnoremap <CR> o<Esc>
-nnoremap <BS> x
 
 " indent guides
 let g:indent_guides_color_change_percent = 2
@@ -255,7 +253,7 @@ command! -bang WA wa<bang>
 command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
-" double tap esc to clear last search
+" clear last search
 nnoremap <silent> <leader>c :noh<CR>
 
 " auto reload vimrc when editing
