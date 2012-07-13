@@ -39,7 +39,7 @@ set showmode
 set showcmd
 set hidden
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list:longest
 set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*,*node_modules/*
 set visualbell
 set cursorline
@@ -49,6 +49,7 @@ set backspace=indent,eol,start
 set number
 set linespace=1
 set shortmess=a
+set complete=.,b,u,] " default completion
 
 " white space / tab options
 set list
@@ -127,6 +128,10 @@ nmap <Leader>id :IndentGuidesDisable<CR>
 if has("gui_running")
   let g:indent_guides_enable_on_vim_startup = 1
 endif
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 
 " NERDCommenter
 let NERDSpaceDelims=1
