@@ -129,10 +129,6 @@ if has("gui_running")
   let g:indent_guides_enable_on_vim_startup = 1
 endif
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
-
 " NERDCommenter
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
