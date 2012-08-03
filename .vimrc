@@ -163,6 +163,7 @@ endif
 if has("mac")
   let g:Powerline_symbols = 'fancy'
 endif
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " Ctrl+p
 let g:ctrlp_map = '<leader>t'
