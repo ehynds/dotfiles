@@ -88,3 +88,6 @@
 [submodule ".vim/bundle/vim-signature"]
 	path = .vim/bundle/vim-signature
 	url = https://github.com/kshenoy/vim-signature.git
+[submodule ".vim/bundle/vim-rainbow-parentheses"]
+	path = .vim/bundle/vim-rainbow-parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
