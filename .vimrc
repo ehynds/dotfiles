@@ -69,6 +69,9 @@ set undodir=~/.vim/undo
 set backup
 set noswapfile
 
+" Highlight conflict markers
+match ErrorMsg "<<<<<<<\\|=======\\|>>>>>>>"
+
 " slam the j and k keys in any order to GTFO
 inoremap jk <Esc>
 inoremap kj <Esc>
