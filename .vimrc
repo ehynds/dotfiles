@@ -175,6 +175,7 @@ call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_show_hidden = 1
 
 " buffergator
 let g:buffergator_suppress_keymaps=1
