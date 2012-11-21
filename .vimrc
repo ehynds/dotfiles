@@ -177,6 +177,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_show_hidden = 1
 
+" Tagbar
+nnoremap <F8> :TagbarToggle<CR>
+
 " buffergator
 let g:buffergator_suppress_keymaps=1
 let g:buffergator_sort_regime="mru"
