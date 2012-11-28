@@ -140,6 +140,7 @@ let NERDCompactSexyComs=1
 nnoremap <Leader>nf :NERDTreeFind<CR> " open a tree with the current file as context
 let NERDTreeQuitOnOpen=1 " quit once opening a file
 let NERDTreeHighlightCursorline=1 " highlight the selected entry in the tree
+let NERDTreeShowHidden=1
 if has("unix")
   nnoremap <silent> <c-n> :NERDTreeToggle<CR>
 endif
