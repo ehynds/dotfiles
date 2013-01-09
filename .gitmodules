@@ -94,3 +94,6 @@
 [submodule ".vim/bundle/vim-markdown-folding"]
 	path = .vim/bundle/vim-markdown-folding
 	url = git://github.com/nelstrom/vim-markdown-folding.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
