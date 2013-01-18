@@ -1,9 +1,52 @@
 set nocompatible
-
-" pathogen
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Bundles
+Bundle 'gmarik/vundle'
+Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'jimmyhchan/dustjs.vim'
+Bundle 'sjl/gundo.vim'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'walm/jshint.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-repeat'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'BufOnly.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ap/vim-css-color.git'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-haml'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'pangloss/vim-javascript.git'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'groenewege/vim-less'
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'matchit.zip'
+Bundle 'gregsexton/MatchTag'
+Bundle 'sickill/vim-pasta'
+Bundle 'Rename2'
+Bundle 'kshenoy/vim-signature'
+Bundle 'kana/vim-smartinput'
+Bundle 'sjl/splice.vim'
+
+" Snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle 'garbas/vim-snipmate'
+
+
+" Turn this back on after all bundles have been loaded
 filetype plugin indent on
 
 " set syntax highlighting options
