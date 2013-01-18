@@ -27,8 +27,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-haml'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'digitaltoad/vim-jade'
-Bundle 'pangloss/vim-javascript.git'
-Bundle 'jelera/vim-javascript-syntax'
+Bundle 'ehynds/vim-javascript.git'
+Bundle 'ehynds/vim-javascript-syntax'
 Bundle 'groenewege/vim-less'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'matchit.zip'
@@ -42,9 +42,7 @@ Bundle 'sjl/splice.vim'
 " Snipmate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
 Bundle 'garbas/vim-snipmate'
-
 
 " Turn this back on after all bundles have been loaded
 filetype plugin indent on
