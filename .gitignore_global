@@ -4,3 +4,5 @@ ehthumbs.db
 Thumbs.db
 *.zip
 *.scssc
+sass-cache
+node_modules
