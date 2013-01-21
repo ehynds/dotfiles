@@ -1,4 +1,5 @@
 set nocompatible
+
 filetype off
 
 " Vundle
@@ -44,6 +45,9 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 
+" Powerline
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
 " Turn this back on after all bundles have been loaded
 filetype plugin indent on
 
@@ -66,7 +70,7 @@ set undolevels=250
 set ignorecase
 set smartcase
 set backspace=indent,eol,start " Intuitive backspacing in insert mode
-set encoding=utf-8
+set encoding=utf-8 nobomb
 set incsearch " Highlight dynamically as pattern is typed.
 set hlsearch " highlight all occurrances of a search
 set laststatus=2 " Always show status line
@@ -78,7 +82,7 @@ set sidescroll=1
 set sidescrolloff=10
 set showmode
 set showcmd
-set hidden
+set hidden " When a buffer is brought to foreground remember marks/undo history
 set wildmenu
 set wildmode=longest,list:longest
 set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*,*node_modules/*
@@ -149,9 +153,9 @@ au VimResized * :wincmd =
 " code folding
 set foldmethod=indent
 set foldlevel=99
+set nofoldenable " disable folding on file open
 nnoremap <space> za
 vnoremap <space> zf
-set nofoldenable " disable folding on file open
 
 " JavaScript-specific code folding
 au FileType javascript setlocal foldmethod=marker
@@ -202,16 +206,6 @@ let g:html_indent_style1 = "inc"
 
 " rainbow parens
 nnoremap <leader>r :RainbowParenthesesToggle<cr>
-
-" Powerline
-if has("unix")
-  " assume I'm not using a patched font on linux
-  let g:Powerline_symbols = 'unicode'
-endif
-if has("mac")
-  let g:Powerline_symbols = 'fancy'
-endif
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " Ctrl+p
 let g:ctrlp_map = '<leader>t'

@@ -5,7 +5,10 @@ colorscheme solarized
 
 " macvim options
 if has("mac")
-  set guifont=Monaco:h12
+  set guifont=Monaco\ for\ Powerline:h12
+
+  " more line spacing
+  set lsp=4
 
   " make the alt key behave as a meta key.
   " this enables you to remap the alt key
