@@ -1,5 +1,4 @@
 set nocompatible
-
 filetype off
 
 " Vundle
@@ -17,7 +16,6 @@ Bundle 'walm/jshint.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-repeat'
-Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'BufOnly.vim'
@@ -39,14 +37,19 @@ Bundle 'Rename2'
 Bundle 'kshenoy/vim-signature'
 Bundle 'kana/vim-smartinput'
 Bundle 'sjl/splice.vim'
+Bundle 'othree/html5.vim'
+Bundle 'ervandew/supertab'
 
-" Snipmate
+" Snipmate bundles
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 
 " Powerline
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" python import sys; sys.path.append("/usr/local/lib/python2.7/site-packages")
+" python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
+Bundle 'Lokaltog/powerline'
 
 " Turn this back on after all bundles have been loaded
 filetype plugin indent on
@@ -54,9 +57,15 @@ filetype plugin indent on
 " set syntax highlighting options
 syntax on
 set t_Co=256
+set background=light
 let g:solarized_termcolors=256
 let g:solarized_visibility="low"
-colorscheme jellybeans
+
+if has("gui_running")
+  colorscheme solarized
+else
+  colorscheme jellybeans
+endif
 
 " remap leader
 let mapleader = ","
@@ -80,10 +89,10 @@ set title " Show the filename in the window titlebar.
 set scrolloff=3 " start scrolling when within 3 lines near the top/bottom
 set sidescroll=1
 set sidescrolloff=10
-set showmode
-set showcmd
+set showmode " show the current mode
+set showcmd " show the command being executed
 set hidden " When a buffer is brought to foreground remember marks/undo history
-set wildmenu
+set wildmenu " Enhance command line completion
 set wildmode=longest,list:longest
 set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.zip,.git,*dist/*,*node_modules/*
 set visualbell
@@ -95,6 +104,8 @@ set number
 set linespace=1
 set shortmess=a
 set complete=.,b,u,] " default completion
+set colorcolumn=80
+set lsp=4 " more linespacing
 
 " white space / tab options
 set list
@@ -114,14 +125,12 @@ set undodir=~/.vim/undo
 set backup
 set noswapfile
 
-" Highlight conflict markers
-match ErrorMsg "<<<<<<<\\|=======\\|>>>>>>>"
-
 " slam the j and k keys in any order to GTFO
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap jj <Esc>
 inoremap kk <Esc>
+inoremap <c-j> <Esc>
 
 " Don't move on *
 nnoremap * *<c-o>
@@ -134,18 +143,17 @@ nnoremap N Nzzzv
 nnoremap g; g;zz
 nnoremap g, g,zz
 
-" Scroll to the middle with something i can remember
-nnoremap zm zz
-
 " status line (if powerline is not available)
-set statusline=%<%f\ %y" file name and type
-set statusline+=%h%w%m%r " flags
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " encoding
-set statusline+=%=L:%l/%L " right align; current line/total lines
-set statusline+=\ (%p%%) " percent complete
-set statusline+=\ C:%c%V " character
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=%* " switch to normal status line
+if !exists('g:powerline_loaded')
+  set statusline=%<%f\ %y" file name and type
+  set statusline+=%h%w%m%r " flags
+  set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " encoding
+  set statusline+=%=L:%l/%L " right align; current line/total lines
+  set statusline+=\ (%p%%) " percent complete
+  set statusline+=\ C:%c%V " character
+  set statusline+=\ %{fugitive#statusline()}
+  set statusline+=%* " switch to normal status line
+endif
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
@@ -190,9 +198,6 @@ if has("unix")
   nnoremap <silent> <c-n> :NERDTreeToggle<CR>
 endif
 
-" Sparkup
-let g:sparkupNextMapping = '<leader>nt'
-
 " Gundo
 nnoremap <F7> :GundoToggle<CR>
 
@@ -203,9 +208,6 @@ map <leader>a :Ack!
 let g:html_indent_inctags = "body,head,tbody,embed"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-
-" rainbow parens
-nnoremap <leader>r :RainbowParenthesesToggle<cr>
 
 " Ctrl+p
 let g:ctrlp_map = '<leader>t'
@@ -241,7 +243,7 @@ vnoremap <silent> <F1> :echo expand("%:p")<CR>
 
 " work with splits a bit easier
 set splitright " open split vertical windows to the right of the current window
-set splitbelow
+set splitbelow " open split horizontal windows below current window
 nnoremap <leader>ws <C-w>v<C-w>l " new vertical
 nnoremap <leader>wh <C-w>s<C-w>l " new horizontal
 nnoremap <leader>wq <C-w>q<C-w>l " quit window
@@ -309,3 +311,6 @@ autocmd! BufWritePost .vimrc source %
 
 " use 4-space soft tabs for sass files so I can actually read them.
 autocmd BufRead,BufNewFile *.sass setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+" regular text file options
+autocmd BufRead,BufNewFile *.md setlocal wrap
