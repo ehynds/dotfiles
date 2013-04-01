@@ -39,6 +39,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'sjl/splice.vim'
 Bundle 'othree/html5.vim'
 Bundle 'ervandew/supertab'
+Bundle 'airblade/vim-gitgutter'
 
 " Snipmate bundles
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -46,8 +47,6 @@ Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 
 " Powerline
-" python import sys; sys.path.append("/usr/local/lib/python2.7/site-packages")
-" python from powerline.bindings.vim import source_plugin; source_plugin()
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
 Bundle 'Lokaltog/powerline'
 
@@ -83,6 +82,7 @@ set encoding=utf-8 nobomb
 set incsearch " Highlight dynamically as pattern is typed.
 set hlsearch " highlight all occurrances of a search
 set laststatus=2 " Always show status line
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set modelines=0
 set nowrap " Do not wrap lines.
 set title " Show the filename in the window titlebar.
@@ -144,7 +144,7 @@ nnoremap g; g;zz
 nnoremap g, g,zz
 
 " status line (if powerline is not available)
-if !exists('g:powerline_loaded')
+if exists('g:powerline_loaded')
   set statusline=%<%f\ %y" file name and type
   set statusline+=%h%w%m%r " flags
   set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " encoding
@@ -198,6 +198,11 @@ if has("unix")
   nnoremap <silent> <c-n> :NERDTreeToggle<CR>
 endif
 
+" Git Gutter
+let g:gitgutter_diff_args = '-w'
+nmap ]h :GitGutterNextHunk<CR>
+nmap [h :GitGutterPrevHunk<CR>
+
 " Gundo
 nnoremap <F7> :GundoToggle<CR>
 
@@ -214,6 +219,7 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_max_height = 25
 
 " Tagbar
 nnoremap <F8> :TagbarToggle<CR>
