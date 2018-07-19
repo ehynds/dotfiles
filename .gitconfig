@@ -1,0 +1,43 @@
+[user]
+	name = ehynds
+	email = ehynds@gmail.com
+[difftool]
+  prompt = false
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[color "diff-highlight"]
+  oldNormal = "red bold"
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
+[core]
+  excludesfile = /Users/erichynds/.gitignore_global
+  editor = vim
+  quotepath = false
+  pager = diff-highlight | diff-so-fancy | less -r
+[color]
+  ui = true
+[alias]
+  co = checkout
+  wat = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  fix = commit --amend -C HEAD
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+  undopush = "git push -f origin HEAD^:master"
+  undo = reset --hard HEAD~1
+  pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+[format]
+  pretty = oneline
+[credential]
+  helper = osxkeychain
+[merge]
+  tool = splice
+[mergetool "splice"]
+  cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+  trustExitCode = true
+[push]
+  default = current
+[branch]
+  autosetuprebase = always
