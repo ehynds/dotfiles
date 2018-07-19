@@ -1,79 +1,73 @@
 set nocompatible
 filetype off
-
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-" Bundles
-Bundle 'gmarik/Vundle.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'mbbill/undotree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'sickill/vim-pasta'
-Bundle 'kshenoy/vim-signature'
-Bundle 'gregsexton/MatchTag'
-Bundle 'Raimondi/delimitMate'
-Bundle 'bling/vim-airline'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neocomplete'
-Bundle 'mileszs/ack.vim'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'matchit.zip'
-Bundle 'BufOnly.vim'
-Bundle 'Rename2'
-
-" Language bundles
-Bundle 'ehynds/vim-javascript'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'othree/html5.vim'
-Bundle 'tpope/vim-haml'
-Bundle 'ap/vim-css-color'
-Bundle 'groenewege/vim-less'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'plasticboy/vim-markdown'
-" Bundle 'digitaltoad/vim-jade'
+call plug#begin('~/.vim/plugged')
 
 " Colorschemes
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'ajh17/Spacegray.vim'
-Bundle 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+
+" Bundles
+Plug 'ctrlpvim/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPBuffer', 'CtrlPMRUFiles'] }
+Plug 'mbbill/undotree', { 'on': ['UndotreeToggle'] }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+" Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'sickill/vim-pasta'
+Plug 'kshenoy/vim-signature'
+Plug 'gregsexton/MatchTag'
+Plug 'Raimondi/delimitMate'
+Plug 'vim-airline/vim-airline'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'Shougo/neosnippet'
+Plug 'mileszs/ack.vim'
+Plug 'tmhedberg/matchit'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'vim-scripts/Rename2', { 'on': ['Rename'] }
+Plug 'vasconcelloslf/vim-interestingwords'
+Plug 'ihacklog/HiCursorWords'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'w0rp/ale'
+Plug 'drzel/vim-line-no-indicator'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/goyo.vim'
+
+" Language bundles
+Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
+Plug 'mustache/vim-mustache-handlebars', { 'for': ['mustache', 'handlebars', 'html', 'html.handlebars'] }
+Plug 'tpope/vim-haml', { 'for': ['scss', 'sass', 'haml'] }
+Plug 'ap/vim-css-color', { 'for': ['scss', 'sass', 'css'] }
+Plug 'groenewege/vim-less', { 'for': ['less'] }
+Plug 'nelstrom/vim-markdown-folding', { 'for': ['markdown'] }
+Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
+
+call plug#end()
 
 " Turn this back on after all bundles have been loaded
-call vundle#end()
 filetype plugin indent on
 
 " =============================================================================
 " Syntax/colorscheme
 " =============================================================================
-
 syntax on
-set background=light
-let g:solarized_termcolors=256
-let g:solarized_visibility="low"
-
-if has("gui_running")
-  colorscheme solarized
-  " colorscheme spacegray
-else
-  colorscheme jellybeans
-endif
+set background=dark
+colorscheme gruvbox
 
 " =============================================================================
 " History / Undo
 " =============================================================================
-
 set history=1000    " Increase history from 20
-set undofile        " Persistent unto
+set undofile        " Persistent undo
 set undolevels=5000 " Number of changes that can be undone
 set backup          " Backup the file during writes
 set noswapfile      " Don't create swap files
@@ -115,7 +109,7 @@ set ttyfast                    " Send more chars at a given time
 set ruler                      " Show the cursor position
 set number                     " Enable line numbers
 set shortmess=atI              " Don't show intro message when starting Vim
-set lsp=4                      " more line spacing
+set lsp=2                      " more line spacing
 set synmaxcol=256              " Don't try to highlight lines >256 chars
 set colorcolumn=81             " Visually show a line at the 81st column
 
@@ -131,7 +125,7 @@ set wildignore+=*.ico,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.psd                      
 set wildignore+=*.zip,*.exe                                                      " Binaries
 set wildignore+=.git,.svn                                                        " SCM
 set wildignore+=.tmp,.trash,.orig,.DS_Store
-set wildignore+=*node_modules/*,.sass-cache,*bower_components/*,*.min.js,*dist/* " Front-end stuff
+set wildignore+=*node_modules/*,.sass-cache,*bower_components/*,*.min.js,*dist/*,originals/ " Front-end stuff
 set wildignore+=*.pbxproj,*.xcodeproj/**,*.xcassets/**                           " XCode
 
 " white space / tab options
@@ -150,11 +144,19 @@ set breakindent   " TODO
 " Delete comment character when joining commented lines
 set formatoptions+=j
 
+" code folding
+set foldmethod=indent
+set foldlevel=99
+set nofoldenable " disable folding on file open
+
 " slam the j and k keys in any order to GTFO
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap jj <Esc>
 inoremap kk <Esc>
+
+" Make Ctrl-c behave like esc (trigger insertleave)
+inoremap <C-c> <Esc>
 
 " Don't move on *
 nnoremap * *<c-o>
@@ -168,12 +170,14 @@ nnoremap <c-o> <c-o>zz
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Code folding
-set foldmethod=indent
-set foldlevel=99
-set nofoldenable " disable folding on file open
-nnoremap <space> za " space to toggle folds
-vnoremap <space> zf " space to toggle folds
+" use space to toggle folds
+nnoremap <space> za
+vnoremap <space> zf
+
+" Keep folds closed while inserting text
+" http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 " Insert a new line and return to normal mode on enter
 nnoremap <CR> o<Esc>
@@ -251,9 +255,11 @@ command! -bang Wa wa<bang>
 command! -bang WA wa<bang>
 command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
+command! -bang Bd bd<bang>
 
 " Clear the last search
 nnoremap <silent> <leader>c :noh<CR>
+" nnoremap <silent> <esc><esc> :noh<return><esc>
 
 " =============================================================================
 " Plugin settings
@@ -267,13 +273,13 @@ let g:EasyMotion_smartcase = 1
 
 " Bufonly
 nnoremap <leader>bo :BufOnly<CR>
+command! -bang Bo bo<bang>
 
 " Delimitmate
 let delimitMate_expand_cr = 1
 let delimitMate_balance_matchpairs = 1
 
 " Neosnippet
-let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -283,30 +289,16 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
       \ "\<Plug>(neosnippet_expand_or_jump)"
       \: "\<TAB>"
 
-" Neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 0
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#disable_auto_complete = 1
-let g:neocomplete#enable_refresh_always = 1
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
 " Indent guides
 let g:indent_guides_color_change_percent = 2
 let g:indent_guides_auto_colors = 1
-nmap <Leader>ie :IndentGuidesEnable<CR>
-nmap <Leader>id :IndentGuidesDisable<CR>
 if has("gui_running")
   let g:indent_guides_enable_on_vim_startup = 1
 endif
 
 " NERDCommenter
-let NERDSpaceDelims=1
-let NERDCompactSexyComs=1
+" let NERDSpaceDelims=1
+" let NERDCompactSexyComs=1
 
 " NERDTree
 nnoremap <Leader>nf :NERDTreeFind<CR> " open a tree with the current file as context
@@ -323,13 +315,22 @@ nnoremap <F7> :UndotreeToggle<CR>
 " Easy align
 vnoremap <silent> <Enter> :EasyAlign<Enter>
 
+" jsx
+let g:jsx_ext_required = 0
+
 " Airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#branch#empty_message = "No SCM"
-if(has("gui_running"))
+let g:airline#extensions#syntastic#enabled = 1
+if has("gui_running")
   let g:airline_powerline_fonts = 1
 endif
+let g:airline_section_y = '%{LineNoIndicator()}'
+let g:airline_section_z = '%2c'
+
+" no line indicator
+let g:line_no_indicator_chars = [' ', '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']
 
 " vim-javascript
 let g:html_indent_inctags = "body,head,tbody,embed"
@@ -340,6 +341,14 @@ let g:html_indent_style1 = "inc"
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>bl :CtrlPBuffer<CR>
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .DS_Store
+      \ --ignore originals
+      \ --ignore dist
+      \ --ignore bower_components
+      \ --ignore node_modules
+      \ -g ""'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_show_hidden = 1
@@ -348,27 +357,60 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("h")': ['<c-h>'],
   \}
 
+" vim-markdown
+let g:markdown_fenced_languages = ['html', 'javascript']
+
+" Ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_warn_about_trailing_whitespace = 1
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
+" Interesting words
+nnoremap <silent> <leader>iw :call InterestingWords('n')<cr>
+nnoremap <silent> <leader>iW :call UncolorAllWords()<cr>
+
+" vim-json
+let g:vim_json_syntax_conceal = 0
+
+" GitGutter styling to use · instead of +/-
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
 " =============================================================================
 " Filetype settings
 " =============================================================================
 
 " Markdown/text files
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-au FileType markdown setlocal wrap spell linebreak formatoptions=t1 textwidth=80
+au BufNewFile,BufReadPost *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
+au FileType markdown setlocal wrap spell linebreak formatoptions=t1 textwidth=80 foldenable
 
 " Commit message editing
 au BufNewFile,BufRead COMMIT_EDITMSG set spell
-
-" JSON
-au BufRead,BufNewFile *.json setf javascript
 
 " ZSH
 au BufRead,BufNewFile .zsh_rc,.functions,.commonrc setf zsh
 
 " JavaScript-specific code folding
-au FileType javascript setlocal foldmethod=marker
-au FileType javascript setlocal foldmarker={,}
-au FileType javascript setlocal omnifunc=tern#Complete
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+hi link jsArrowFunction GruvboxAqua    " just =>
+hi link jsFunction GruvboxAqua         " The word function
+hi link jsFuncName GruvboxGreen        " name of the function
+hi link jsFuncArgs GruvboxYellow       " args inside () and arrow function args
+hi link jsTemplateBraces GruvboxBlue   " ${}
+hi link jsTemplateVar GruvboxFg        " variable inside template strings
+
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
 
 " =============================================================================
 " Functions
@@ -433,3 +475,12 @@ function! InsertCloseTag()
     let @z = '</' . Tag . '>'
     normal `z"zp==
 endfunction " InsertCloseTag()
+
+" Custom mode for distraction-free editing
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+endfunction
+command! ProseMode call ProseMode()
+nmap <leader>p :ProseMode<CR>

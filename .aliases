@@ -1,12 +1,17 @@
 # Dir navigation
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ~='cd ~'
+alias ....='cd ../../..'
+alias .....="cd ../../../.."
 alias ll='tree --dirsfirst -ChFupDaL 1'
+alias lll='tree -I ".git|node_modules|bower_components|.DS_Store" --dirsfirst  -L ${1:-3} -aC $2 | less -FRNX;'
 alias ls='ls -a'
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
 
-# weinre
-alias weinre='java -jar ~/weinre.jar --boundHost=-all-'
+# stuff
+alias rm="rm -i"  # safety first
+alias cat="ccat --bg=dark"
 
 # apache
 alias a2stop="sudo apachectl stop"
@@ -14,21 +19,52 @@ alias a2start="sudo apachectl start"
 alias a2restart="sudo apachectl graceful"
 
 # vim
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias gvim="mvim"
-alias vimdiff="vim -d"
 
 # git
 alias gs="git status"
 alias gp="git pull && fact"
+alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gcb="git checkout -b"
 
-# Utilities
-alias a="ack -ia"
+# utils
 alias d="du -h -d=1"
 alias df="df -h"
-alias h="history"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
-alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
-alias localip="ipconfig getifaddr en1"
-alias flush="dscacheutil -flushcache"
 alias fact="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
+alias deletedsstore="find . -name '*.DS_Store' -type f -ls -delete"
+
+# Get readable list of network IPs
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias localip="ipconfig getifaddr en0"
+alias flush="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
+
+# Suspend laptop
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+  alias "$method"="lwp-request -m '$method'"
+done
+
+# alias phpstart="sudo php-fpm -y /usr/local/etc/php/5.6/php-fpm.conf -g /usr/local/var/run/php-fpm.pid"
+alias java7='/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java'
+
+# http://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/
+alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
+alias nginx.restart='nginx.stop && nginx.start'
+alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
+alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
+alias php-fpm.restart='php-fpm.stop && php-fpm.start'
+alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
+alias mysql.restart='mysql.stop && mysql.start'
+
+alias bastion="ssh -i ~/.ec2/map-web.pem web@ec2-52-202-126-179.compute-1.amazonaws.com"
+
+# Alias for the restarting React Native local server.
+alias reverse="adb reverse tcp:8081 tcp:8081"
+
+# Wake a connected Android device via the hardware button.
+alias wake="adb shell input keyevent 82"
