@@ -13,11 +13,6 @@ alias dt="cd ~/Desktop"
 alias rm="rm -i"  # safety first
 alias cat="ccat --bg=dark"
 
-# apache
-alias a2stop="sudo apachectl stop"
-alias a2start="sudo apachectl start"
-alias a2restart="sudo apachectl graceful"
-
 # vim
 alias gvim="mvim"
 
@@ -40,31 +35,8 @@ alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias localip="ipconfig getifaddr en0"
 alias flush="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
 
-# Suspend laptop
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "$method"="lwp-request -m '$method'"
 done
 
-# alias phpstart="sudo php-fpm -y /usr/local/etc/php/5.6/php-fpm.conf -g /usr/local/var/run/php-fpm.pid"
-alias java7='/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java'
-
-# http://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/
-alias nginx.start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist'
-alias nginx.restart='nginx.stop && nginx.start'
-alias php-fpm.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
-alias php-fpm.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist"
-alias php-fpm.restart='php-fpm.stop && php-fpm.start'
-alias mysql.start="launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.stop="launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-alias mysql.restart='mysql.stop && mysql.start'
-
-alias bastion="ssh -i ~/.ec2/map-web.pem web@ec2-52-202-126-179.compute-1.amazonaws.com"
-
-# Alias for the restarting React Native local server.
-alias reverse="adb reverse tcp:8081 tcp:8081"
-
-# Wake a connected Android device via the hardware button.
 alias wake="adb shell input keyevent 82"

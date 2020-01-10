@@ -1,47 +1,30 @@
 set go-=T " Hide toolbar on launch
 
-set background=light
-colorscheme solarized
+set guifont=Monaco\ for\ Powerline:h13
 
-" macvim options
-if has("mac")
-  set guifont=Monaco\ for\ Powerline:h12
+" make the alt key behave as a meta key.
+" this enables you to remap the alt key
+set invmmta
 
-  " more line spacing
-  set lsp=4
+" Command-t to open a new tab
+macmenu &File.New\ Tab key=<nop>
+map <D-t> :tabnew<CR>
 
-  " make the alt key behave as a meta key.
-  " this enables you to remap the alt key
-  set invmmta
+" Remap <Cmd-P>
+macmenu &File.Print key=<nop>
+map <D-p> :GFiles<CR>
 
-  " command-t
-  macmenu &File.New\ Tab key=<nop>
+" Remap <Cmd-B>
+macmenu &File.New\ Window key=<nop>
+nmap <D-b> :NERDTreeToggle<CR>
+nmap <D-n> :NERDTreeToggle<CR>
 
-  " Command-t to open a new tab
-  map <D-t> :tabnew<CR>
+" Command-arrow to move between tabs;
+nnoremap <D-right> :tabnext<CR>
+nnoremap <D-left> :tabprevious<CR>
 
-  " Command-e to expand html (Sparkup)
-  let g:sparkupExecuteMapping = '<D-e>'
+" Fullscreen takes up entire screen
+set fuoptions=maxhorz,maxvert
 
- " Fullscreen takes up entire screen
-  set fuoptions=maxhorz,maxvert
- 
-  " Command-Return for fullscreen
-  macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
-  
-  " Command-arrow to move between tabs;
-  " Command-down to open bufexplorer
-  nnoremap <D-right> :tabnext<CR>
-  nnoremap <D-left> :tabprevious<CR>
-  nnoremap <D-down> :BuffergatorToggle<CR><CR>
-
-  " NERD tree. Command-n to open
-  macmenu &File.New\ Window key=<nop>
-  nmap <D-n> :NERDTreeToggle<CR>
-
-" linux options
-elseif has("unix")
-  set guifont="consolas 11"
-  set clipboard=unnamed " allow copy/paste from system clipboard
-  set lsp=3 " needs moar line spacing
-endif
+" Command-Return for fullscreen
+macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>

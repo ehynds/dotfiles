@@ -1,6 +1,3 @@
-[user]
-	name = ehynds
-	email = ehynds@gmail.com
 [difftool]
   prompt = false
 [color "status"]
@@ -8,15 +5,16 @@
   changed = green
   untracked = cyan
 [color "diff-highlight"]
-  oldNormal = "red bold"
-  oldHighlight = "red bold 52"
-  newNormal = "green bold"
-  newHighlight = "green bold 22"
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [core]
   excludesfile = /Users/erichynds/.gitignore_global
   editor = vim
   quotepath = false
-  pager = diff-highlight | diff-so-fancy | less -r
+  ; pager = diff-highlight | diff-so-fancy | less -r
+  pager = diff-highlight | diff-so-fancy | less --tabs=4 -RFX
 [color]
   ui = true
 [alias]
@@ -26,8 +24,9 @@
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
   undopush = "git push -f origin HEAD^:master"
   undo = reset --hard HEAD~1
-  pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-co  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 [format]
   pretty = oneline
 [credential]
@@ -41,3 +40,12 @@
   default = current
 [branch]
   autosetuprebase = always
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[diff-so-fancy]
+  changeHunkIndicators = false

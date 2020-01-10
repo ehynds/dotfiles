@@ -4,18 +4,18 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="honukai" # dstufft
 export CLICOLOR=1
 export PATH=/usr/local/sbin:$PATH
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home
 export EDITOR=vim
 export NVM_DIR=~/.nvm
 export POD_LOCAL_HOME=~/BC
 
 # android/react-native
-# export ANDROID_HOME=/usr/local/opt/android-sdk
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Fastlane
+export PATH="$HOME/.fastlane/bin:$PATH"
 
 # Prevent homebrew from talking to Google Analytics
 export HOMEBREW_NO_ANALYTICS=1
@@ -49,7 +49,7 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # Symlink diff-highlight to .bin so it's in the path
 ln -sf "$(brew --prefix)/share/git-core/contrib/diff-highlight/diff-highlight" ~/.bin/diff-highlight
@@ -62,5 +62,11 @@ ln -sf "$(brew --prefix)/share/git-core/contrib/diff-highlight/diff-highlight" ~
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Symlink hub to git
+eval "$(hub alias -s)"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+bind -x '"\C-p": vim $(fzf);'
